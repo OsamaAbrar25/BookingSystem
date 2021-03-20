@@ -21,9 +21,9 @@ public class MybookingsAdapter extends FirestoreRecyclerAdapter<AccommodationMod
 
     @Override
     protected void onBindViewHolder(@NonNull MybookingsViewHolder holder, int position, @NonNull AccommodationModel model) {
-        holder.textView_bookingid.setText(model.getAcc_name());
+        holder.textView_bookingid.setText(model.getBooking_id());
         holder.textView_accname.setText(model.getAcc_name());
-        holder.textView_bookingtime.setText(model.getAcc_name());
+        holder.textView_bookingtime.setText(model.getBooking_time());
     }
 
     @NonNull
@@ -43,7 +43,7 @@ public class MybookingsAdapter extends FirestoreRecyclerAdapter<AccommodationMod
             textView_accname = itemView.findViewById(R.id.textView_accname);
             textView_bookingtime = itemView.findViewById(R.id.textView_bookingtime);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+           /* itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
@@ -51,7 +51,7 @@ public class MybookingsAdapter extends FirestoreRecyclerAdapter<AccommodationMod
                         listener.onItemClick(getSnapshots().getSnapshot(position), position);
                     }
                 }
-            });
+            });*/
         }
     }
 

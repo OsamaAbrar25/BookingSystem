@@ -37,7 +37,7 @@ public class MybookingsFragment extends Fragment {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference reference = db.collection("bookings");
-        Query query = reference.whereEqualTo("user_id", ""+FirebaseAuth.getInstance().getCurrentUser().getUid()).orderBy("booking_time", Query.Direction.ASCENDING);
+        Query query = reference.whereEqualTo("user_id", ""+FirebaseAuth.getInstance().getCurrentUser().getUid()).orderBy("booking_time", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<AccommodationModel> options = new FirestoreRecyclerOptions.Builder<AccommodationModel>()
                 .setQuery(query, AccommodationModel.class)
                 .build();
@@ -48,17 +48,18 @@ public class MybookingsFragment extends Fragment {
         recyclerView_mybookings.setLayoutManager(linearLayoutManager);
         recyclerView_mybookings.setHasFixedSize(true);
         recyclerView_mybookings.setAdapter(mybookingsAdapter);
+        //mybookingsAdapter.notifyDataSetChanged();
 
         mybookingsAdapter.setOnItemClickListener(new MybookingsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
                 AccommodationModel accommodationModel = documentSnapshot.toObject(AccommodationModel.class);
-                String booking_id = documentSnapshot.get("acc_name").toString();
+                String booking_id = documentSnapshot.get("booking_id").toString();
                 String acc_name = documentSnapshot.get("acc_name").toString();
-                String booking_time = documentSnapshot.get("acc_name").toString();
-                accommodationModel.setAcc_name(booking_id);
+                String booking_time = documentSnapshot.get("booking_time").toString();
+                accommodationModel.setBooking_id(booking_id);
                 accommodationModel.setAcc_name(acc_name);
-                accommodationModel.setAcc_name(booking_time);
+                accommodationModel.setBooking_time(booking_time);
 
             }
         });

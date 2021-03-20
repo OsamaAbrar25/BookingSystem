@@ -9,6 +9,8 @@ public class AccommodationModel {
     private String min_duration;
     private String rent;
     private String room;
+    private String booking_time;
+    private String booking_id;
 
     public AccommodationModel() {}
 
@@ -66,5 +68,21 @@ public class AccommodationModel {
 
     public void setRoom(String room) {
         this.room = room;
+    }
+
+    public String getBooking_time() {
+        return booking_time;
+    }
+
+    public void setBooking_time(String booking_time) {
+        this.booking_time = booking_time;
+    }
+
+    public String getBooking_id() {
+        return booking_id;
+    }
+
+    public void setBooking_id(String booking_id) {
+        this.booking_id = booking_id;
     }
 }

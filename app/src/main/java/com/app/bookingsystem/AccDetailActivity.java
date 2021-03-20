@@ -23,6 +23,8 @@ import com.razorpay.PaymentResultListener;
 
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -124,13 +126,18 @@ public class AccDetailActivity extends AppCompatActivity implements PaymentResul
     }
 
     public void writeBookings() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpledateformat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        String time = simpledateformat.format(calendar.getTime());
+
         Map<String, String> data = new HashMap<>();
         data.put("user_id", ""+FirebaseAuth.getInstance().getCurrentUser().getUid());
         data.put("user_name","test");
         data.put("acc_name", name);
         data.put("acc_address", address);
         data.put("acc_type", "test");
-        data.put("booking_time", "test");
+        data.put("booking_time", time);
+        data.put("booking_id", "test");
         data.put("rent", rent);
 
         db.collection("bookings")
