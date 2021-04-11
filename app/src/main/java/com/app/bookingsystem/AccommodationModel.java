@@ -1,5 +1,7 @@
 package com.app.bookingsystem;
 
+import android.net.Uri;
+
 public class AccommodationModel {
     private String acc_name;
     private String address;
@@ -11,6 +13,8 @@ public class AccommodationModel {
     private String room;
     private String booking_time;
     private String booking_id;
+    private String notice_period;
+    private String parking;
 
     public AccommodationModel() {}
 
@@ -30,13 +34,6 @@ public class AccommodationModel {
         this.address = address;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public String getLocation() {
         return location;
@@ -84,5 +81,29 @@ public class AccommodationModel {
 
     public void setBooking_id(String booking_id) {
         this.booking_id = booking_id;
+    }
+
+    public String getNotice_period() {
+        return notice_period;
+    }
+
+    public void setNotice_period(String notice_period) {
+        this.notice_period = notice_period;
+    }
+
+    public String getParking() {
+        return parking;
+    }
+
+    public void setParking(String parking) {
+        this.parking = parking;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

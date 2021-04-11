@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,12 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 
 public class HomeRecyclerViewAdapter extends FirestoreRecyclerAdapter<AccommodationModel, HomeRecyclerViewAdapter.HomeRecyclerViewHolder> {
 
-    //private ArrayList<AccommodationModel> arrayList;
     private OnItemClickListener listener;
 
 
@@ -34,18 +34,7 @@ public class HomeRecyclerViewAdapter extends FirestoreRecyclerAdapter<Accommodat
         return new HomeRecyclerViewHolder(view);
     }
 
-    /*@Override
-    public void onBindViewHolder(@NonNull HomeRecyclerViewHolder holder, int position) {
-        holder.textView_name.setText(arrayList.get(position).getAcc_name());
-        holder.textView_type.setText(arrayList.get(position).getRoom());
-        holder.textView_address.setText(arrayList.get(position).getAddress());
 
-    }*/
-
-    /*@Override
-    public int getItemCount() {
-        return arrayList.size();
-    }*/
 
     @Override
     protected void onBindViewHolder(@NonNull HomeRecyclerViewHolder holder, int position, @NonNull AccommodationModel model) {
@@ -53,18 +42,27 @@ public class HomeRecyclerViewAdapter extends FirestoreRecyclerAdapter<Accommodat
         holder.textView_type.setText(model.getRoom());
         holder.textView_address.setText(model.getAddress());
         holder.textView_rent.setText(model.getRent());
+
+        Picasso.get()
+                .load(model.getImage())
+                //.resize(250, 250)
+                //.rotate(90)
+                //.placeholder(R.drawable.user_placeholder)
+                .into(holder.imageView_pic);
     }
 
 
     public class HomeRecyclerViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView_name, textView_type, textView_address, textView_rent;
+        ImageView imageView_pic;
         public HomeRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             textView_name = itemView.findViewById(R.id.textView_name);
             textView_type = itemView.findViewById(R.id.textView_type);
             textView_address = itemView.findViewById(R.id.textView_address);
             textView_rent = itemView.findViewById(R.id.textView_rent);
+            imageView_pic = itemView.findViewById(R.id.imageView_pic);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

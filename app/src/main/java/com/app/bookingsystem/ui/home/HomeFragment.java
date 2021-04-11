@@ -1,6 +1,7 @@
 package com.app.bookingsystem.ui.home;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -42,7 +43,6 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class HomeFragment extends Fragment {
 
-    //private HomeViewModel homeViewModel;
     private RecyclerView recyclerView;
     private HomeRecyclerViewAdapter homeRecyclerViewAdapter;
     private Button button_search;
@@ -85,7 +85,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        //Query query = reference.orderBy("acc_name", Query.Direction.ASCENDING);
         Query query = reference.orderBy("acc_name", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<AccommodationModel> options = new FirestoreRecyclerOptions.Builder<AccommodationModel>()
                 .setQuery(query, AccommodationModel.class)
@@ -107,13 +106,21 @@ public class HomeFragment extends Fragment {
                 String name = documentSnapshot.get("acc_name").toString();
                 String address = documentSnapshot.get("address").toString();
                 String rent = documentSnapshot.get("rent").toString();
-
+                String room = documentSnapshot.get("room").toString();
+                String image = documentSnapshot.get("image").toString();
+                String notice = documentSnapshot.get("notice_period").toString();
+                String parking = documentSnapshot.get("parking").toString();
+                Uri image2 = Uri.parse(image);
 
 
                 Intent intent = new Intent(getActivity(), AccDetailActivity.class);
                 intent.putExtra("acc_name", name);
                 intent.putExtra("address", address);
                 intent.putExtra("rent", rent);
+                intent.putExtra("room", room);
+                intent.putExtra("image", image);
+                intent.putExtra("notice_period", notice);
+                intent.putExtra("parking", parking);
                 startActivity(intent);
             }
         });

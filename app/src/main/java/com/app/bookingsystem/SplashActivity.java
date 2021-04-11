@@ -20,14 +20,13 @@ public class SplashActivity extends AppCompatActivity {
     private static final int SPLASH_DISPLAY_LENGTH = 1500;
     private static final int RC_SIGN_IN = 1;
     // Initialize Firebase Auth
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
@@ -39,24 +38,26 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                List<AuthUI.IdpConfig> providers = Arrays.asList(
-                        new AuthUI.IdpConfig.PhoneBuilder().build(),
-                        new AuthUI.IdpConfig.GoogleBuilder().build());
 
-                // Create and launch sign-in intent
-                startActivityForResult(
-                        AuthUI.getInstance()
-                                .createSignInIntentBuilder()
-                                .setAvailableProviders(providers)
-                                .build(),
-                        RC_SIGN_IN);
-            }
-        }, SPLASH_DISPLAY_LENGTH);
+        if (currentUser == null) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    List<AuthUI.IdpConfig> providers = Arrays.asList(
+                            new AuthUI.IdpConfig.PhoneBuilder().build(),
+                            new AuthUI.IdpConfig.GoogleBuilder().build());
 
-
+                    // Create and launch sign-in intent
+                    startActivityForResult(
+                            AuthUI.getInstance()
+                                    .createSignInIntentBuilder()
+                                    .setAvailableProviders(providers)
+                                    .setIsSmartLockEnabled(false)
+                                    .build(),
+                            RC_SIGN_IN);
+                }
+            }, SPLASH_DISPLAY_LENGTH);
+        }
 
     }
 
@@ -82,5 +83,6 @@ public class SplashActivity extends AppCompatActivity {
             }
 
         }
+        finish();
     }
 }

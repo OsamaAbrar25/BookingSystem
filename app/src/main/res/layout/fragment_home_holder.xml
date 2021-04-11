@@ -2,13 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FAFAFA"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,18 +23,19 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
+                android:id="@+id/imageView_pic"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/fui_idp_button_background_twitter" />
 
             <TextView
@@ -40,54 +48,98 @@
                 android:text="PG Name"
                 android:textColor="#000000"
                 android:textSize="22sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageView_pic"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView_type"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:text="Type"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintEnd_toStartOf="@+id/textView"
+                app:layout_constraintStart_toEndOf="@+id/imageView_logo"
                 app:layout_constraintTop_toBottomOf="@+id/textView_name" />
 
             <TextView
                 android:id="@+id/textView_address"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
                 android:singleLine="true"
                 android:text="Address"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageView_logo2"
                 app:layout_constraintTop_toBottomOf="@+id/textView_type" />
 
             <TextView
                 android:id="@+id/textView_rent"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:text="Rent"
                 app:layout_constraintEnd_toStartOf="@+id/textView3"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageView_logo3"
                 app:layout_constraintTop_toBottomOf="@+id/textView_address" />
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="Rs / month"
+                android:text="INR/month"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView_rent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_address" />
+
+            <ImageView
+                android:id="@+id/imageView_logo"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toStartOf="@+id/textView_type"
+                app:layout_constraintStart_toEndOf="@+id/imageView_pic"
+                app:layout_constraintTop_toBottomOf="@+id/textView_name"
+                app:srcCompat="@drawable/bed" />
+
+            <ImageView
+                android:id="@+id/imageView_logo2"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/textView_address"
+                app:layout_constraintStart_toEndOf="@+id/imageView_pic"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_logo"
+                app:srcCompat="@drawable/address" />
+
+            <ImageView
+                android:id="@+id/imageView_logo3"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toEndOf="@+id/imageView_pic"
+                app:layout_constraintTop_toBottomOf="@+id/textView_address"
+                app:srcCompat="@drawable/rent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:text="BHK"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView_type"
+                app:layout_constraintTop_toBottomOf="@+id/textView_name" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

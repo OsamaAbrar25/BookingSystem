@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.razorpay.Checkout;
 import com.razorpay.PaymentResultListener;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -29,9 +31,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AccDetailActivity extends AppCompatActivity implements PaymentResultListener {
-    TextView textView_detailname, textView_detailaddress, textView_rentdetail;
+    TextView textView_detailname, textView_detailaddress, textView_rentdetail, textView_bhkdetail, textView_noticedetail, textView_parkingdetail;
+    ImageView imageView_detail;
     Button button_pay;
-    String name, address, rent;
+    String name, address, rent, room, image, notice, parking;
     int amt;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -42,6 +45,10 @@ public class AccDetailActivity extends AppCompatActivity implements PaymentResul
         textView_detailname = findViewById(R.id.textView_detailname);
         textView_detailaddress = findViewById(R.id.textView_detailaddress2);
         textView_rentdetail = findViewById(R.id.textView_rentdetail);
+        textView_bhkdetail = findViewById(R.id.textView_bhkdetail);
+        imageView_detail = findViewById(R.id.imageView_detail);
+        textView_noticedetail = findViewById(R.id.textView_noticedetail);
+        textView_parkingdetail = findViewById(R.id.textView_parkingdetail);
         button_pay = findViewById(R.id.button_pay);
 
 
@@ -53,11 +60,24 @@ public class AccDetailActivity extends AppCompatActivity implements PaymentResul
         name = intent.getStringExtra("acc_name");
         address = intent.getStringExtra("address");
         rent = intent.getStringExtra("rent");
+        room = intent.getStringExtra("room");
+        image = intent.getStringExtra("image");
+        notice = intent.getStringExtra("notice_period");
+        parking = intent.getStringExtra("parking");
         Toast.makeText(this, ""+address, Toast.LENGTH_SHORT).show();
 
         textView_detailname.setText(name);
         textView_detailaddress.setText(address);
         textView_rentdetail.setText(rent);
+        textView_bhkdetail.setText(room);
+        textView_noticedetail.setText(notice);
+        textView_parkingdetail.setText(parking);
+        Picasso.get()
+                .load(image)
+                //.rotate(90)
+                .fit()
+                //.placeholder(R.drawable.user_placeholder)
+                .into(imageView_detail);
         amt = Integer.parseInt(rent)*100;
 
         button_pay.setOnClickListener(new View.OnClickListener() {
@@ -132,10 +152,10 @@ public class AccDetailActivity extends AppCompatActivity implements PaymentResul
 
         Map<String, String> data = new HashMap<>();
         data.put("user_id", ""+FirebaseAuth.getInstance().getCurrentUser().getUid());
-        data.put("user_name","test");
+        data.put("user_name", "test");
         data.put("acc_name", name);
-        data.put("acc_address", address);
-        data.put("acc_type", "test");
+        data.put("address", address);
+        data.put("room", room);
         data.put("booking_time", time);
         data.put("booking_id", "test");
         data.put("rent", rent);

@@ -13,23 +13,15 @@
         android:theme="@style/Theme.BookingSystem">
         <activity android:name=".AccDetailActivity"></activity>
         <activity
-            android:name=".SplashActivity"
-            android:theme="@style/Theme.BookingSystem.NoActionBar">
+            android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
             android:theme="@style/Theme.BookingSystem.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
